@@ -1,11 +1,13 @@
 #ifndef CALCULATE_H
 #define CALCULATE_H
 #include <QString>
+#include "exptree.h"
 
 
 class Calculate
 {
 private:
+    ExpTree expr;
     QString prex;
     QString midx;
     bool isLegal;
@@ -17,6 +19,7 @@ public:
 
     QString getPrex(){return prex;}
     QString getMidx(){return midx;}
+    QSet<QChar> getVary(){return expr.getVary();}
 
 };
 
