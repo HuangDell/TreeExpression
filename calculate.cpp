@@ -2,7 +2,15 @@
 
 Calculate::Calculate(const QString& prex):expr(prex),prex(prex),midx(expr.getMidx()){}
 
-void Calculate::calPrex(const QString& prex)
+int Calculate::calExpression(const QMap<QString, int> &vals)
 {
-    isLegal=true;
+    return expr.calTree(vals);
+}
+
+Calculate Calculate::mergeConst()
+{
+    auto ans=*this;
+    ans.expr.mergeTree();
+    ans.midx=ans.expr.getMidx();
+    return ans;
 }

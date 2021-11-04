@@ -20,9 +20,11 @@ public:
     ~MainWindow();
 
 private:
+    int choose;
     void initTableView();
     void initAnsList();
     void initInput();
+    void initButton();
     void getInput();
     Ui::MainWindow *ui;
     QVector<Calculate> anses;

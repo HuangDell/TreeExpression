@@ -1,6 +1,7 @@
 #ifndef CALCULATE_H
 #define CALCULATE_H
 #include <QString>
+#include <QMap>
 #include "exptree.h"
 
 
@@ -11,14 +12,16 @@ private:
     QString prex;
     QString midx;
     bool isLegal;
-    void calPrex(const QString& prex);
-
 
 public:
-    Calculate(const QString& prex);
+    Calculate(const QString &prex);
+
+    Calculate mergeConst();
+    int calExpression(const QMap<QString,int> &vals);
 
     QString getPrex(){return prex;}
     QString getMidx(){return midx;}
+    bool getLegal(){return isLegal;}
     QSet<QChar> getVary(){return expr.getVary();}
 
 };
