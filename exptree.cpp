@@ -134,6 +134,76 @@ bool ExpTree::mergeTree(Node *ptr)
         ptr->right=nullptr;
         return true;
     }
+    else if(!bool1 && bool2 && getPriority(ptr->left->val)==getPriority(ptr->val))
+    {
+        int left;
+        Node* temp,*del;
+        if(ptr->left->right->val[0].isDigit())
+        {
+            left=ptr->left->right->val[0].toLatin1()-'0';
+            temp=ptr->left->left;
+            del=ptr->left->right;
+        }
+        else if(ptr->left->left->val[0].isDigit())
+        {
+            left=ptr->left->left->val[0].toLatin1()-'0';
+            temp=ptr->left->right;
+            del=ptr->left->left;
+        }
+        else
+            return false;
+        auto right=ptr->right->val[0].toLatin1()-'0';
+        int newval=0;
+        if(ptr->val=='+')
+            newval=left+right;
+        else if(ptr->val=='-')
+            newval=left-right;
+        else if(ptr->val=='*')
+            newval=left*right;
+        else if(ptr->val=='/')
+            newval=left/right;
+        else if(ptr->val=='^')
+            newval=left*right;
+        ptr->right->val=QString::number(newval);
+        delete ptr->left;
+        delete del;
+        ptr->left=temp;
+    }
+    else if(!bool2 &&bool1 && getPriority(ptr->right->val)==getPriority(ptr->val))
+    {
+        int right;
+        Node* temp,*del;
+        if(ptr->right->right->val[0].isDigit())
+        {
+            right=ptr->right->right->val[0].toLatin1()-'0';
+            temp=ptr->right->left;
+            del=ptr->right->right;
+        }
+        else if(ptr->right->left->val[0].isDigit())
+        {
+            right=ptr->right->left->val[0].toLatin1()-'0';
+            temp=ptr->right->right;
+            del=ptr->right->left;
+        }
+        else
+            return false;
+        auto left=ptr->left->val[0].toLatin1()-'0';
+        int newval=0;
+        if(ptr->val=='+')
+            newval=left+right;
+        else if(ptr->val=='-')
+            newval=left-right;
+        else if(ptr->val=='*')
+            newval=left*right;
+        else if(ptr->val=='/')
+            newval=left/right;
+        else if(ptr->val=='^')
+            newval=left*right;
+        ptr->left->val=QString::number(newval);
+        delete ptr->right;
+        delete del;
+        ptr->right=temp;
+    }
     return false;
 }
 

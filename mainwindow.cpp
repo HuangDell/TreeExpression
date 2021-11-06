@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), ui(new Ui::MainWindow),choose(0)
+MainWindow::MainWindow(QWidget *parent): QMainWindow(parent), choose(0),ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     initTableView();
@@ -42,6 +42,29 @@ void MainWindow::initButton()
         anses.push_back(ans);
         ui->ansList->addItem(ans.getMidx());
     });
+
+    connect(ui->del,&QAbstractButton::clicked,this,[this](){
+        anses.erase(anses.cbegin()+choose);
+        delete ui->ansList->takeItem(choose);
+        ui->ansView->clear();
+        ui->table->clear();
+    });
+
+    connect(ui->diff,&QAbstractButton::clicked,this,[this](){
+        auto ans=anses[choose].diff();
+        int i=0;
+        for(const auto var:anses[choose].getVary())
+        {
+            ui->ansView->append(var);
+            QTextCursor text_cursor(ui->ansView->textCursor());
+            text_cursor.movePosition(QTextCursor::End);
+            ui->ansView->setTextCursor(text_cursor);
+            ui->ansView->insertPlainText("'=");
+            ui->ansView->insertPlainText(ans[i]);
+            i++;
+        }
+    });
+
 
 }
 

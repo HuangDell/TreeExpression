@@ -79,7 +79,7 @@
             <number>2</number>
            </property>
            <attribute name="horizontalHeaderVisible">
-            <bool>true</bool>
+            <bool>false</bool>
            </attribute>
            <attribute name="horizontalHeaderMinimumSectionSize">
             <number>25</number>
@@ -190,8 +190,8 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_2">
+           <item row="2" column="1">
+            <widget class="QPushButton" name="del">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -208,7 +208,23 @@
               <string notr="true">background-color:rgb(255, 255, 255)</string>
              </property>
              <property name="text">
-              <string>合并</string>
+              <string>删除</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QPushButton" name="diff">
+             <property name="font">
+              <font>
+               <family>微软雅黑 Light</family>
+               <pointsize>12</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color:rgb(255, 255, 255)</string>
+             </property>
+             <property name="text">
+              <string>求导</string>
              </property>
             </widget>
            </item>

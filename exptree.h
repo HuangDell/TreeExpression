@@ -23,13 +23,17 @@ private:
     Node* head;
     QSet<QChar> vary;
     QString prex;
+
     void clear(Node* ptr);
     bool isOperator(const QChar &ch);
     int getPriority(const QString &st);
+
     bool mergeTree(Node* ptr);
+    void buildTree(Node* &ptr,const QString& prex,int& index);
+
     void medTraversal(Node* ptr,QString& midx,QStack<QString> &st);
     int postTraversal(Node* ptr,const QMap<QString,int> &vals);
-    void buildTree(Node* &ptr,const QString& prex,int& index);
+
 public:
     ExpTree(const QString& prex);
     ExpTree(const ExpTree& tree);

@@ -1,8 +1,12 @@
 #ifndef CALCULATE_H
 #define CALCULATE_H
 #include <QString>
+#include "Python.h"
+#include <QVector>
+#include <string>
 #include <QMap>
 #include "exptree.h"
+#include <cstring>
 
 
 class Calculate
@@ -17,6 +21,7 @@ public:
     Calculate(const QString &prex);
 
     Calculate mergeConst();
+    QVector<char*> diff();
     int calExpression(const QMap<QString,int> &vals);
 
     QString getPrex(){return prex;}
