@@ -20,7 +20,7 @@ public:
     ~MainWindow();
 
 private:
-    int choose;
+    int choose,post;
     void initTableView();
     void initAnsList();
     void initInput();

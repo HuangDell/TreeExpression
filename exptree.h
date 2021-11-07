@@ -6,9 +6,13 @@
 #include <QDebug>
 #include <QSet>
 #include <QMap>
+#include <cmath>
+#define CHECKERROR(i)\
+    if (i>=prex.size()) throw "请重新输入";
 
 #define ADDVARY(ch)\
     if(ch.isLetter()) vary.insert(ch);
+
 
 struct Node{
     QString val;
@@ -26,13 +30,17 @@ private:
 
     void clear(Node* ptr);
     bool isOperator(const QChar &ch);
+    bool isFunction(int index);
+    bool isFunction(const QString &st);
     int getPriority(const QString &st);
 
     bool mergeTree(Node* ptr);
     void buildTree(Node* &ptr,const QString& prex,int& index);
+    bool checkTree(Node* ptr);
+    bool checkTree();
 
     void medTraversal(Node* ptr,QString& midx,QStack<QString> &st);
-    int postTraversal(Node* ptr,const QMap<QString,int> &vals);
+    double postTraversal(Node* ptr,const QMap<QString,double> &vals);
 
 public:
     ExpTree(const QString& prex);
@@ -41,7 +49,7 @@ public:
     QString getMidx();
     void clear();
     void mergeTree();
-    int calTree(const QMap<QString,int> &vals);
+    double calTree(const QMap<QString,double> &vals);
     QSet<QChar> getVary(){return vary;}
 };
 
